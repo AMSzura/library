@@ -1,0 +1,55 @@
+:root {
+    --black: #222831;
+    --grey: #393E46;
+    --yellow: #FFD369;
+    --white: #EEEEEE;
+    margin: 0;
+}
+
+body {
+    border-radius: 1vw;
+    margin: 0;
+    background-color: var(--grey);
+}
+
+.nav {
+    height:10vw;
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    background-color: var(--black);
+    box-shadow: 9px 9px 3px #222831;
+    border-bottom: 2px #FFD369;
+    /* z-index: 2; */
+}
+
+.new {
+    background-color: var(--white);
+    height: 10vw;
+
+}
+
+.wrapper {
+    display: flex;
+    place-content: center;
+    background-color: var(--grey);
+}
+
+.library {
+    display: grid;
+    grid-template-columns: 20vw 20vw 20vw;
+    grid-template-rows: 30vh;
+    grid-auto-rows: 30vh;
+    gap: 10vw;
+    padding: 60px;
+    z-index: 1;
+
+}
+
+.card {
+    height: 100%;
+    width: 100%;
+    background-color: var(--white);
+    border-radius: 1vw;
+    box-shadow: 9px 9px 3px #222831;
+}
