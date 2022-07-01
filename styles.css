@@ -10,10 +10,13 @@ body {
     border-radius: 1vw;
     margin: 0;
     background-color: var(--grey);
+    margin: 0;
 }
 
 .nav {
+    padding: 0px 30px;
     height:10vw;
+    max-height: 10vw;
     display: flex;
     justify-content: space-between;
     align-items: baseline;
@@ -23,9 +26,18 @@ body {
     /* z-index: 2; */
 }
 
-.new {
+.title {
+    font-size: 5vw;
+    color: var(--white);
+}
+
+#new {
     background-color: var(--white);
-    height: 10vw;
+    height: 3vw;
+    width: 8vw;
+    border-radius: 1vw;
+    outline: none;
+    border: none;
 
 }
 
