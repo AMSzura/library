@@ -5,6 +5,6 @@ class book {
     this.pages;
     this.read;
     }
-
-
 }
+
+const books = [];
