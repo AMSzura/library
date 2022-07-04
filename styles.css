@@ -17,17 +17,10 @@ button {
     cursor: pointer;
 }
 
-/* .svg {
-    margin: 0;
-
-} */
-
 #menu {
     filter: invert(99%) sepia(1%) saturate(207%) hue-rotate(179deg) brightness(114%) contrast(87%);
     height: 3vw;
 }
-
-
 
 .nav {
     padding: 0px 30px;
@@ -56,6 +49,74 @@ button {
     border: none;
     box-shadow: 6px 9px 3px #222831;
     font-size: 1.7vw;
+    transition: 0.3s;
+
+}
+
+#new:hover {
+    transform: scale(1.2);
+    transition: 0.3s;
+}
+
+.new-pop-up {
+    display: none;
+    position: fixed;
+    top: 6vw;
+    left: 35vw;
+    width: 30vw;
+    flex-direction: column;
+    place-items: center;
+    background-color: var(--white);
+    border-radius: 1vw;
+    box-shadow: 12px 12px 6px #222831;
+    padding: 5px;
+}
+
+.new-pop-up h1 {
+    text-align: center;
+    margin: 0;
+}
+
+#new-book {
+    display: grid;
+    grid-template-columns: auto;
+    grid-template-rows: 4vw;
+    grid-auto-rows: auto;
+    gap: 3vw;
+    padding: 0px 30px 30px;
+}
+
+#close {
+    border: none;
+    margin-left: auto;
+    background-color: var(--white) 0;
+}
+
+#close>img {
+    height: 2.5vw;
+}
+
+.top-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#new-book>.section {
+    display: flex;
+    flex-direction: column;
+    place-items: center;
+    gap: 1.3vw;
+}
+
+#new-book label {
+    font-size: 1.2vw;
+}
+
+#new-book input {
+    border: none;
+    border-radius: 1vw;
+    height: 1.4vw;
 }
 
 .wrapper {

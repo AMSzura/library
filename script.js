@@ -47,11 +47,20 @@ function createCard() {
 
 const dom = {
 
-    library: document.querySelector(".library"),
+    library : document.querySelector(".library"),
+    newPopUp: document.querySelector(".new-pop-up"),
+    closeNewBtn : document.getElementById("close"),
+    newBtn : document.getElementById("new"),
 
 }
 
-const library = document.querySelector(".library");
+dom.closeNewBtn.addEventListener("click", () => {
+    dom.newPopUp.style.display = "none";
+})
+
+dom.newBtn.addEventListener("click", () => {
+    dom.newPopUp.style.display = "flex";
+})
 
 
 const books = [warAndPeace, catch22];
