@@ -13,15 +13,18 @@ body {
     margin: 0;
 }
 
+button {
+    cursor: pointer;
+}
+
 /* .svg {
     margin: 0;
 
 } */
 
 #menu {
-    filter: invert(99%) sepia(1%)
-    saturate(207%) hue-rotate(179deg) brightness(114%) contrast(87%); 
-     height: 3vw;
+    filter: invert(99%) sepia(1%) saturate(207%) hue-rotate(179deg) brightness(114%) contrast(87%);
+    height: 3vw;
 }
 
 
@@ -53,7 +56,6 @@ body {
     border: none;
     box-shadow: 6px 9px 3px #222831;
     font-size: 1.7vw;
-
 }
 
 .wrapper {
@@ -78,7 +80,7 @@ body {
 }
 
 .card {
-    max-height: 30vh;
+    max-height: 30vw;
     max-width: 20vw;
     padding: 1vw;
     background-color: var(--white);
@@ -89,14 +91,14 @@ body {
     justify-content: space-between;
 }
 
-#delete {
+.delete {
     margin-left: auto;
     border: none;
     outline: none;
     height: 1.5vw;
 }
 
-#delete>img {
+.delete>img {
     height: 1.5vw;
 }
 
@@ -112,6 +114,13 @@ body {
 }
 
 .card-content>* {
-    margin: 1vw;
+    margin: 5%;
+}
 
+.card-content>h1 {
+    font-size: 2vw;
+}
+
+.card-content>h3 {
+    font-size: 1vw;
 }
