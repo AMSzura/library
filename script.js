@@ -20,6 +20,7 @@ function createCard() {
     this.card.appendChild(this.deleteBtn);
 
     let icon = document.createElement("img");
+    icon.classList.add("delete-img")
     icon.setAttribute("src", "icons/close_FILL0_wght400_GRAD0_opsz48.svg");
     this.deleteBtn.appendChild(icon);
 
@@ -44,6 +45,7 @@ function createCard() {
 
 }
 
+//object of dom vars
 
 const dom = {
 
@@ -51,29 +53,79 @@ const dom = {
     newPopUp: document.querySelector(".new-pop-up"),
     closeNewBtn : document.getElementById("close"),
     newBtn : document.getElementById("new"),
+    form : document.getElementById("new-book"),
 
+    cards : document.querySelectorAll(".card"),
+
+    titleField : document.getElementById("title"),
+    authorField : document.getElementById("author"),
+    pagesField : document.getElementById("pages"),
+    readRadio : document.getElementById("read"),
+    submitBtn : document.getElementById("submit"),
+    deleteBtn : document.querySelectorAll(".delete"),
+
+        
+    }
+
+const newBookWindow = {
+    open() {
+        dom.newPopUp.style.display = "flex";
+    },
+    close() {
+        dom.newPopUp.style.display = "none";
+    }
 }
 
-dom.closeNewBtn.addEventListener("click", () => {
-    dom.newPopUp.style.display = "none";
+//event listeners
+
+dom.closeNewBtn.addEventListener("click", newBookWindow.close);
+
+dom.newBtn.addEventListener("click", newBookWindow.open);
+
+dom.submitBtn.addEventListener("click", () => {
+    let book = new Book;
+    book.title = dom.titleField.value;
+    book.author = dom.authorField.value;
+    book.pages = dom.pagesField.value;
+    (dom.readRadio.checked) ? book.read = true : book.read = false;
+    books.push(book);
+    newBookWindow.close();
+    refreshLibrary();
+});
+
+document.addEventListener("click", function(event) {
+    cardIndex = event.target.getAttribute("data");
+    if (event.target.className == "delete") {
+        event.target.parentElement.remove();
+        books.splice(cardIndex, 1);
+    } else if (event.target.className == "delete-img") {
+        event.target.parentElement.parentElement.remove();
+        books.splice(cardIndex, 1);
+    }
 })
 
-dom.newBtn.addEventListener("click", () => {
-    dom.newPopUp.style.display = "flex";
-})
 
 
 const books = [warAndPeace, catch22];
 
 function refreshLibrary() {
 
-    for (let book of books) {
-        let card = new createCard();
+    for (const [index, book] of books.entries()) {
+        const existingCards = document.querySelectorAll(".card");
+        if (existingCards[index]) {
+            continue;
+        } else {
+        const card = new createCard();
         card.title.innerText = book.title;
         card.author.innerText = book.author;
-        card.card.setAttribute("data", "0");
+        card.card.setAttribute("data", index);
         dom.library.appendChild(card.card);
+        }
     }
+    // let deleteBtn = document.querySelectorAll(".delete");
+    // deleteBtn.addEventListener("click", deleteBook);
 }
+
+
 
 refreshLibrary();
