@@ -82,6 +82,50 @@ button {
     transition: 0.3s;
 }
 
+.sort-window {
+    display: none;
+    visibility: hidden;
+    display: flex;
+    position: absolute;
+    border-radius: 1vw;
+    background-color: #FFD369;
+    flex-direction: column;
+    height: calc(30px + 1vw);
+    width: calc(40px + 1vw);
+    transition: 0.3s;
+    transform-origin: top left;
+    pointer-events: visible;
+    
+}
+
+.sort-window.open {
+    transform:scale(1) translate(-5px, -5px);
+    visibility: visible;
+    width: 5vw;
+    height: 20vh;
+    padding: 10px;
+}
+
+.sort-window>h3 {
+    visibility: hidden;
+    opacity: 0;
+    font-size: 1vw;
+}
+
+.sort-window.open>h3 {
+    visibility: visible;
+    opacity: 1;
+    font-size: 1vw;
+    transition: 0.4s;
+    transition-delay: 0.2s;
+    cursor: pointer;
+}
+
+.sort-window.open>h3:hover {
+    transform: scale(1.1);
+    transition-delay: 0.1s;
+}
+
 .new-pop-up {
     display: none;
     position: fixed;

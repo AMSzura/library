@@ -105,10 +105,15 @@ function createCard() {
 const dom = {
 
     library: document.querySelector(".library"),
+
     newPopUp: document.querySelector(".new-pop-up"),
     closeNewBtn: document.getElementById("close"),
     newBtn: document.getElementById("new"),
     form: document.getElementById("new-book"),
+
+    sortBtn: document.getElementById("sort"),
+    sortWindow: document.querySelector(".sort-window"),
+
 
     cards: document.querySelectorAll(".card"),
 
@@ -131,11 +136,32 @@ const newBookWindow = {
     }
 }
 
+const sortWindow = {
+    open() {
+    dom.sortWindow.classList.add("open");   
+    },
+    close() {
+        dom.sortWindow.classList.remove("open");
+    },
+
+}
+
 //event listeners
 
 dom.closeNewBtn.addEventListener("click", newBookWindow.close);
 
 dom.newBtn.addEventListener("click", newBookWindow.open);
+
+dom.sortBtn.addEventListener("click", sortWindow.open);
+// dom.sortBtn.firstElementChild.addEventListener("click", sortWindow.open);
+
+document.addEventListener("click", function (event) {
+    if (event.target != dom.sortBtn 
+        && event.target != dom.sortBtn.firstElementChild
+        && event.target != dom.sortWindow) {
+        sortWindow.close();
+    }
+})
 
 //submit form to create new book. refresh library
 dom.submitBtn.addEventListener("click", () => {
