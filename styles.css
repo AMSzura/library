@@ -209,6 +209,12 @@ hr {
     justify-content: space-between;
 }
 
+.extra-info {
+    display: none;
+    position: absolute;
+    opacity: 1;
+}
+
 .delete {
     margin-left: auto;
     border: none;
