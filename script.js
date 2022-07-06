@@ -122,8 +122,6 @@ function refreshLibrary() {
         dom.library.appendChild(card.card);
         }
     }
-    // let deleteBtn = document.querySelectorAll(".delete");
-    // deleteBtn.addEventListener("click", deleteBook);
 }
 
 
