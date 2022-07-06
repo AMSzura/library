@@ -244,8 +244,14 @@ hr {
     font-size: 1vw;
 }
 
-.read {
-    height: 3%;
-    width: 2%;
+.read-check {
+    height: 4%;
+    width: 4%;
     align-self: center;
+    border: 2px solid var(--grey);
+    border-radius: 1vw;
+}
+
+.read-check.true {
+    background-color: var(--yellow);
 }

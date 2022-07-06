@@ -8,7 +8,7 @@ class Book {
 }
 
 const warAndPeace = new Book("War and Peace", "Leo Tolstoy", 1000, false);
-const catch22 = new Book("Catch-22", "Joseph Heller", "Leo Tolstoy", 523, true);
+const catch22 = new Book("Catch-22", "Joseph Heller", 523, true);
 
 function createCard() {
 
@@ -29,7 +29,7 @@ function createCard() {
     this.card.appendChild(this.content);
 
     this.readBtn = document.createElement("button");
-    this.readBtn.classList.add("read")
+    this.readBtn.classList.add("read-check")
     this.readBtn.setAttribute("type", "button");
     this.card.appendChild(this.readBtn);
 
@@ -42,6 +42,7 @@ function createCard() {
 
     this.author = document.createElement("h3");
     this.content.appendChild(this.author);
+
 
 }
 
@@ -82,8 +83,9 @@ dom.closeNewBtn.addEventListener("click", newBookWindow.close);
 
 dom.newBtn.addEventListener("click", newBookWindow.open);
 
+//submit form to create new book. refresh library
 dom.submitBtn.addEventListener("click", () => {
-    let book = new Book;
+    const book = new Book;
     book.title = dom.titleField.value;
     book.author = dom.authorField.value;
     book.pages = dom.pagesField.value;
@@ -93,8 +95,10 @@ dom.submitBtn.addEventListener("click", () => {
     refreshLibrary();
 });
 
+
+//card delete listener
 document.addEventListener("click", function(event) {
-    cardIndex = event.target.getAttribute("data");
+    const cardIndex = event.target.getAttribute("data");
     if (event.target.className == "delete") {
         event.target.parentElement.remove();
         books.splice(cardIndex, 1);
@@ -104,6 +108,22 @@ document.addEventListener("click", function(event) {
     }
 })
 
+// on click func to change read status of book
+document.addEventListener("click", function(event){
+    if (event.target.matches(".read-check" || event.target.matches(".read-check.true"))) {
+    const cardIndex = event.target.parentElement.getAttribute("data");
+    const book = books[cardIndex];
+    console.log(cardIndex);
+    if (book.read === false) {
+        book.read = true;
+        event.target.classList.add("true");
+    } else if (book.read === true) {
+        book.read = false;
+        event.target.classList.remove("true");
+    }        
+    }
+
+})
 
 
 const books = [warAndPeace, catch22];
@@ -118,6 +138,9 @@ function refreshLibrary() {
         const card = new createCard();
         card.title.innerText = book.title;
         card.author.innerText = book.author;
+        if (book.read === true) {
+        card.readBtn.classList.add("true"); 
+        }
         card.card.setAttribute("data", index);
         dom.library.appendChild(card.card);
         }
