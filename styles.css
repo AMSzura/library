@@ -64,12 +64,14 @@ button {
     align-items: center;
 }
 
-#sort, #search {
+#sort,
+#search {
     height: calc(30px + 1vw);
     width: calc(40px + 1vw);
 }
 
-#sort>img, #search>img {
+#sort>img,
+#search>img {
     height: calc(10px + 1vw);
 }
 
@@ -95,11 +97,11 @@ button {
     transition: 0.3s;
     transform-origin: top left;
     pointer-events: visible;
-    
+
 }
 
 .sort-window.open {
-    transform:scale(1) translate(-5px, -5px);
+    transform: scale(1) translate(-5px, -5px);
     visibility: visible;
     width: 5vw;
     height: 20vh;
@@ -127,17 +129,32 @@ button {
 }
 
 .new-pop-up {
-    display: none;
+    display: inline-block;
+    visibility: hidden;
+    opacity: 0;
     position: fixed;
     top: 6vw;
     left: 35vw;
     width: 30vw;
+    transform: scale(0.1, 0.1);
     flex-direction: column;
     place-items: center;
-    background-color: var(--white);
+    background-color: var(--yellow);
     border-radius: 1vw;
     box-shadow: 12px 12px 6px #222831;
     padding: 5px;
+    transition-duration: 0.4s;
+    transform-origin: top;
+
+}
+
+.new-pop-up.open {
+    transform: scale(1);
+    background-color: var(--white);
+    display: flex;
+    opacity: 1;
+    visibility: visible;
+    transition-duration: 0.4s;
 }
 
 hr {
@@ -189,7 +206,8 @@ hr {
     font-size: 1.2vw;
 }
 
-#new-book input[type="text"], #new-book input[type="tel"] {
+#new-book input[type="text"],
+#new-book input[type="tel"] {
     border: none;
     border-radius: 1vw;
     height: 1.2vw;
@@ -242,8 +260,8 @@ hr {
 }
 
 .card {
-    height:  auto;
-    width:  auto;
+    height: auto;
+    width: auto;
     padding: 4%;
     background-color: var(--white);
     border-radius: 1vw;

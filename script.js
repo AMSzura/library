@@ -114,6 +114,9 @@ const dom = {
     sortBtn: document.getElementById("sort"),
     sortWindow: document.querySelector(".sort-window"),
 
+    byTitle: document.getElementById("byTitle"),
+    byAuthor: document.getElementById("byAuthor"),
+    byYear: document.getElementById("byYear"),
 
     cards: document.querySelectorAll(".card"),
 
@@ -129,10 +132,12 @@ const dom = {
 
 const newBookWindow = {
     open() {
-        dom.newPopUp.style.display = "flex";
+        // dom.newPopUp.style.visibilty = "visible";
+        dom.newPopUp.classList.add("open");
     },
     close() {
-        dom.newPopUp.style.display = "none";
+        // dom.newPopUp.style.visibility = "hidden";
+        dom.newPopUp.classList.remove("open");
     }
 }
 
@@ -153,13 +158,19 @@ dom.closeNewBtn.addEventListener("click", newBookWindow.close);
 dom.newBtn.addEventListener("click", newBookWindow.open);
 
 dom.sortBtn.addEventListener("click", sortWindow.open);
-// dom.sortBtn.firstElementChild.addEventListener("click", sortWindow.open);
 
 document.addEventListener("click", function (event) {
     if (event.target != dom.sortBtn 
         && event.target != dom.sortBtn.firstElementChild
         && event.target != dom.sortWindow) {
         sortWindow.close();
+    }
+})
+
+document.addEventListener("click", function (event) {
+    switch(event.target) {
+        case dom.byTitle:
+
     }
 })
 
@@ -254,7 +265,6 @@ function refreshLibrary() {
         dom.library.appendChild(card.card);
     }
 }
-// }
 
 alphaBooks = books.sort(byTitle);
 
