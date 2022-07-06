@@ -28,9 +28,9 @@ function createCard() {
     this.content.classList.add("card-content");
     this.card.appendChild(this.content);
 
-    this.readBtn = document.createElement("input");
+    this.readBtn = document.createElement("button");
     this.readBtn.classList.add("read")
-    this.readBtn.setAttribute("type", "radio");
+    this.readBtn.setAttribute("type", "button");
     this.card.appendChild(this.readBtn);
 
     this.title = document.createElement("h1");
