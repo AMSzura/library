@@ -167,10 +167,22 @@ document.addEventListener("click", function (event) {
     }
 })
 
+//listener to set sort order of books & refresh dom cards
 document.addEventListener("click", function (event) {
     switch(event.target) {
         case dom.byTitle:
-
+            sortingOrder = "byTitle";
+            refreshLibrary();
+            break;
+        case dom.byAuthor:
+            sortingOrder = "byAuthor";
+            refreshLibrary();
+            break;
+        case dom.byYear:
+            sortingOrder = "byYear";
+            refreshLibrary();
+            break;
+        default: return;
     }
 })
 
@@ -216,56 +228,56 @@ document.addEventListener("click", function (event) {
 
 })
 
-function byTitle(a, b) {
-    if (a.title > b.title) {
-        return 1;
-    }
-    if (a.title < b.title) {
-        return -1
-    }
-    return 0
-}
-
-function byAuthor(a, b) {
-    if (a.author.split(" ")[1] > b.author.split(" ")[1]) {
-        return 1;
-    }
-    if (a.author.split(" ")[1] < b.author.split(" ")[1]) {
-        return -1
-    }
-    return 0
-}
-
-
 // basic test library
-const books = [warAndPeace, catch22, theOutsider];
+const testBooks = [warAndPeace, catch22, theOutsider];
 
 // to be either test or user based on query:
-const library = new Library(books);
+const library = new Library(testBooks);
 
 
+//set sorting order to default
+let sortingOrder = "default";
+
+
+//deletes book cards and builds new ones from array based on sorting order
 function refreshLibrary() {
 
     const existingCards = document.querySelectorAll(".card");
     existingCards.forEach(element => element.remove());
+    let books;
 
-    for (const [index, book] of books.entries()) {
+    switch (sortingOrder) {
+        case "byTitle" :
+            books = library.byTitle();
+            break;
+        case "byAuthor" :
+            books = library.byAuthor();
+            break;
+        case "byYear" :
+            books = library.byYear();
+            break;
+        default:
+            books = library.books;
+        }
+    
+
+    for (const [index, book] of library.books.entries()) {
         const existingCards = document.querySelectorAll(".card");
-        // if (existingCards[index]) {
-        //     continue;
-        // } else {
         const card = new createCard();
         card.title.innerText = book.title;
         card.author.innerText = book.author;
         card.pages.innerText = "Pages: " + book.pages;
+
         if (book.read === true) {
             card.readBtn.classList.add("true");
         }
+
         card.card.setAttribute("data", index);
         dom.library.appendChild(card.card);
     }
 }
 
-alphaBooks = books.sort(byTitle);
+
+// alphaBooks = books.sort(byTitle);
 
 refreshLibrary();
