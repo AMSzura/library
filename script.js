@@ -193,7 +193,7 @@ dom.submitBtn.addEventListener("click", () => {
     book.author = dom.authorField.value;
     book.pages = dom.pagesField.value;
     (dom.readRadio.checked) ? book.read = true : book.read = false;
-    books.push(book);
+    library.books.push(book);
     newBookWindow.close();
     refreshLibrary();
 });

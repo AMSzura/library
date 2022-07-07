@@ -97,18 +97,24 @@ button {
     transition: 0.3s;
     transform-origin: top left;
     pointer-events: visible;
+    box-shadow: 6px 9px 3px #222831;
 
 }
 
 .sort-window.open {
     transform: scale(1) translate(-5px, -5px);
     visibility: visible;
-    width: 5vw;
+    width: 6vw;
     height: 20vh;
     padding: 10px;
 }
 
 .sort-window>h3 {
+    text-align: center;
+    /* border: 1px solid var(--black);
+    box-shadow: 2px 2px 2px var(--grey); */
+    padding: 2px 3px;
+    border-radius: 1vw;
     visibility: hidden;
     opacity: 0;
     font-size: 1vw;
