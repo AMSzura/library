@@ -4,6 +4,7 @@
     --yellow: #FFD369;
     --white: #EEEEEE;
     margin: 0;
+    overflow-x: hidden;
 }
 
 body {
@@ -264,8 +265,19 @@ hr {
     z-index: 1;
 
 }
+@keyframes fly-in {
+    from {
+        transform: translate(+4000px);
+
+    }
+    to {
+        transform: translate(0);
+
+    }
+}
 
 .card {
+    animation: fly-in .5s ease-in;
     height: auto;
     width: auto;
     padding: 4%;
@@ -275,7 +287,14 @@ hr {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    transition-duration: 1s;
 }
+
+/* .card.open {
+    transform: translate(-1000px);
+    transition-duration: 1s;
+} */
+
 
 .extra-info {
     display: none;

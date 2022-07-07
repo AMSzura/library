@@ -273,7 +273,10 @@ function refreshLibrary() {
         }
 
         card.card.setAttribute("data", index);
+        // card.card.classList.add("open");
         dom.library.appendChild(card.card);
+        // document.querySelectorAll(".card").forEach(element => element.classList.remove("open"));
+
     }
 }
 
