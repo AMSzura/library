@@ -135,7 +135,6 @@ button {
     visibility: visible;
     opacity: 1;
     transition: 0.4s;
-    transition-delay: 0.2s;
     cursor: pointer;
     padding: 10px 5px;
 }
@@ -143,7 +142,6 @@ button {
 
 .sort-window.open>button:hover {
     transform: scale(1.1);
-    transition-delay: 0.1s;
 }
 
 .sort-window>button>* {
@@ -163,10 +161,15 @@ button {
     margin: 0;
     outline: none;
     border: none;
+    transition-duration: 0.4s;
 }
 
 #currentSort>* {
     pointer-events: none;
+}
+
+#currentSort:hover {
+    transform: scale(1.2);
 }
 
 #currentSort>h3 {
