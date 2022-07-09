@@ -106,6 +106,9 @@ const dom = {
 
     library: document.querySelector(".library"),
 
+    libBtnsDiv: document.querySelector(".buttons"),
+    libBtnsLeft: document.querySelector(".left-hand"),
+
     newPopUp: document.querySelector(".new-pop-up"),
     closeNewBtn: document.getElementById("close"),
     newBtn: document.getElementById("new"),
@@ -114,9 +117,12 @@ const dom = {
     sortBtn: document.getElementById("sort"),
     sortWindow: document.querySelector(".sort-window"),
 
-    byTitle: document.getElementById("byTitle"),
-    byAuthor: document.getElementById("byAuthor"),
-    byYear: document.getElementById("byYear"),
+    currentSortBtn: document.getElementById("currentSort"),
+
+    //are these necessary anymore?
+    // byTitle: document.getElementById("byTitle"),
+    // byAuthor: document.getElementById("byAuthor"),
+    // byYear: document.getElementById("byYear"),
 
     cards: document.querySelectorAll(".card"),
 
@@ -127,16 +133,13 @@ const dom = {
     submitBtn: document.getElementById("submit"),
     deleteBtn: document.querySelectorAll(".delete"),
 
-
 }
 
 const newBookWindow = {
     open() {
-        // dom.newPopUp.style.visibilty = "visible";
         dom.newPopUp.classList.add("open");
     },
     close() {
-        // dom.newPopUp.style.visibility = "hidden";
         dom.newPopUp.classList.remove("open");
     }
 }
@@ -167,24 +170,64 @@ document.addEventListener("click", function (event) {
     }
 })
 
-//listener to set sort order of books & refresh dom cards
+//listener to remove sort tag and reset sort order
 document.addEventListener("click", function (event) {
-    switch(event.target) {
-        case dom.byTitle:
-            sortingOrder = "byTitle";
-            refreshLibrary();
-            break;
-        case dom.byAuthor:
-            sortingOrder = "byAuthor";
-            refreshLibrary();
-            break;
-        case dom.byYear:
-            sortingOrder = "byYear";
-            refreshLibrary();
-            break;
-        default: return;
+    if (event.target.id == "currentSort") {
+        event.target.remove();
+        sortingOrder = "default";
+        refreshLibrary();
     }
 })
+
+//adds close button to an element (add on click func later?)
+function makeCloseBtn() {
+    let closeBtn = document.createElement("button");
+    closeBtn.id = ("closeBtn");
+    let closeIcon = document.createElement("img");
+    closeIcon.setAttribute("src", "icons/close_FILL0_wght400_GRAD0_opsz48.svg");
+    closeBtn.appendChild(closeIcon);
+    return closeBtn;
+}
+
+//changes sort order and creates sort tag element based button clicked
+document.querySelectorAll(".sortBtn").forEach(btn => {
+    btn.addEventListener("click", function (event) {
+        // if (event.currentTarget.className != ".sortBtn") {
+        //     return;
+        // } else {
+    sortingOrder = event.currentTarget.id;
+    let currentSortBtn = event.currentTarget.cloneNode(true);
+    currentSortBtn.id = "currentSort";
+    let closeBtn = makeCloseBtn();
+    currentSortBtn.appendChild(closeBtn);
+    dom.libBtnsLeft.appendChild(currentSortBtn);
+    refreshLibrary();            
+        })
+});
+
+//listener to set sort order of books & refresh dom cards
+// document.addEventListener("click", function (event) {
+//     switch(event.target) {
+//         case dom.byTitle:
+//             sortingOrder = "byTitle";
+//             let currentSort = dom.byTitle.cloneNode(true);
+//             currentSort.id = "currentSort";
+//             let closeBtn = makeCloseBtn();
+//             currentSort.appendChild(closeBtn);
+//             dom.libBtnsLeft.appendChild(currentSort)
+//             refreshLibrary();
+//             break;
+//         case dom.byAuthor:
+//             sortingOrder = "byAuthor";
+//             refreshLibrary();
+//             break;
+//         case dom.byYear:
+//             sortingOrder = "byYear";
+//             refreshLibrary();
+//             break;
+//         default: return;
+//     }
+// })
 
 //submit form to create new book. refresh library
 dom.submitBtn.addEventListener("click", () => {
@@ -273,14 +316,9 @@ function refreshLibrary() {
         }
 
         card.card.setAttribute("data", index);
-        // card.card.classList.add("open");
         dom.library.appendChild(card.card);
-        // document.querySelectorAll(".card").forEach(element => element.classList.remove("open"));
 
     }
 }
-
-
-// alphaBooks = books.sort(byTitle);
 
 refreshLibrary();
