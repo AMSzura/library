@@ -61,7 +61,6 @@ const theOutsider = new Book("The Outsider", "Albert Camus", 156, 1942, true );
 const cat = new Book("I Am A Cat", "Soseki Natsume", 456, 1972, false);
 const joke = new Book("The Joke", "Milan Kundera", 600, 1980, true);
 const speedboat = new Book("Speedboat", "Renata Adler", 400, 1960, true);
-const master = new Book("Master & Margarita", "Mikhail Bulgakov", 700, 1954, true);
 
 
 //builds the cards in the dom ready for append
@@ -251,7 +250,7 @@ document.addEventListener("click", function (event) {
 })
 
 // basic test library
-const testBooks = [warAndPeace, catch22, theOutsider, cat, joke, speedboat, master];
+const testBooks = [warAndPeace, catch22, theOutsider, cat, joke, speedboat];
 
 // to be either test or user based on query:
 const library = new Library(testBooks);
