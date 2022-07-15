@@ -53,10 +53,18 @@ Library.prototype.byYear = function () {
     return sorted;
 }
 
+// book objs for test purposes
+
 const warAndPeace = new Book("War and Peace", "Leo Tolstoy", 1000, 1869, false);
 const catch22 = new Book("Catch-22", "Joseph Heller", 523, 1961, true);
 const theOutsider = new Book("The Outsider", "Albert Camus", 156, 1942, true );
+const cat = new Book("I Am A Cat", "Soseki Natsume", 456, 1972, false);
+const joke = new Book("The Joke", "Milan Kundera", 600, 1980, true);
+const speedboat = new Book("Speedboat", "Renata Adler", 400, 1960, true);
+const master = new Book("Master & Margarita", "Mikhail Bulgakov", 700, 1954, true);
 
+
+//builds the cards in the dom ready for append
 function createCard() {
 
     this.card = document.createElement("div");
@@ -118,11 +126,6 @@ const dom = {
     sortWindow: document.querySelector(".sort-window"),
 
     currentSortBtn: document.getElementById("currentSort"),
-
-    //are these necessary anymore?
-    // byTitle: document.getElementById("byTitle"),
-    // byAuthor: document.getElementById("byAuthor"),
-    // byYear: document.getElementById("byYear"),
 
     cards: document.querySelectorAll(".card"),
 
@@ -205,30 +208,6 @@ document.querySelectorAll(".sortBtn").forEach(btn => {
         })
 });
 
-//listener to set sort order of books & refresh dom cards
-// document.addEventListener("click", function (event) {
-//     switch(event.target) {
-//         case dom.byTitle:
-//             sortingOrder = "byTitle";
-//             let currentSort = dom.byTitle.cloneNode(true);
-//             currentSort.id = "currentSort";
-//             let closeBtn = makeCloseBtn();
-//             currentSort.appendChild(closeBtn);
-//             dom.libBtnsLeft.appendChild(currentSort)
-//             refreshLibrary();
-//             break;
-//         case dom.byAuthor:
-//             sortingOrder = "byAuthor";
-//             refreshLibrary();
-//             break;
-//         case dom.byYear:
-//             sortingOrder = "byYear";
-//             refreshLibrary();
-//             break;
-//         default: return;
-//     }
-// })
-
 //submit form to create new book. refresh library
 dom.submitBtn.addEventListener("click", () => {
     const book = new Book;
@@ -258,7 +237,7 @@ document.addEventListener("click", function (event) {
 document.addEventListener("click", function (event) {
     if (event.target.matches(".read-check" || event.target.matches(".read-check.true"))) {
         const cardIndex = event.target.parentElement.getAttribute("data");
-        const book = books[cardIndex];
+        const book = library.books[cardIndex];
         console.log(cardIndex);
         if (book.read === false) {
             book.read = true;
@@ -272,7 +251,7 @@ document.addEventListener("click", function (event) {
 })
 
 // basic test library
-const testBooks = [warAndPeace, catch22, theOutsider];
+const testBooks = [warAndPeace, catch22, theOutsider, cat, joke, speedboat, master];
 
 // to be either test or user based on query:
 const library = new Library(testBooks);

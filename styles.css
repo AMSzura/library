@@ -334,6 +334,7 @@ hr {
 
 .card {
     animation: fly-in 0.5s ease-out;
+    text-align: center;
     height: auto;
     width: auto;
     padding: 4%;
