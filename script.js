@@ -11,6 +11,7 @@ class Book {
 class Library {
     constructor(books) {
         this.books = books;
+        this.sortingOrder = "default";
     }
     }
 
@@ -37,6 +38,8 @@ if (a.title < b.title) {
 }
 return 0;      
     });
+    console.log(this);
+    console.log(sorted);
     return sorted;
 }
 
@@ -58,7 +61,7 @@ Library.prototype.byYear = function () {
 const warAndPeace = new Book("War and Peace", "Leo Tolstoy", 1000, 1869, false);
 const catch22 = new Book("Catch-22", "Joseph Heller", 523, 1961, true);
 const theOutsider = new Book("The Outsider", "Albert Camus", 156, 1942, true );
-const cat = new Book("I Am A Cat", "Soseki Natsume", 456, 1972, false);
+const cat = new Book("I Am A Cat", "Soseki Natsume", 456, 1910, false);
 const joke = new Book("The Joke", "Milan Kundera", 600, 1980, true);
 const speedboat = new Book("Speedboat", "Renata Adler", 400, 1960, true);
 
@@ -197,7 +200,7 @@ document.querySelectorAll(".sortBtn").forEach(btn => {
         // if (event.currentTarget.className != ".sortBtn") {
         //     return;
         // } else {
-    sortingOrder = event.currentTarget.id;
+    library.sortingOrder = event.currentTarget.id;
     let currentSortBtn = event.currentTarget.cloneNode(true);
     currentSortBtn.id = "currentSort";
     let closeBtn = makeCloseBtn();
@@ -267,7 +270,7 @@ function refreshLibrary() {
     existingCards.forEach(element => element.remove());
     let books;
 
-    switch (sortingOrder) {
+    switch (library.sortingOrder) {
         case "byTitle" :
             books = library.byTitle();
             break;
@@ -282,7 +285,7 @@ function refreshLibrary() {
         }
     
 
-    for (const [index, book] of library.books.entries()) {
+    for (const [index, book] of books.entries()) {
         const existingCards = document.querySelectorAll(".card");
         const card = new createCard();
         card.title.innerText = book.title;
